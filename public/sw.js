@@ -2,8 +2,6 @@ const CACHE_NAME = 'squeezepdf-v1';
 const ASSETS = [
   './',
   './index.html',
-  './style.css',
-  './main.js',
   './manifest.json',
   './icon.png'
 ];
@@ -11,6 +9,7 @@ const ASSETS = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
+      // Use addAll but don't fail the whole install if one fails (optional, but safer for hashed assets)
       return cache.addAll(ASSETS);
     })
   );
