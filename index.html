@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SqueezePDF | Premium PDF Compressor</title>
+    <meta name="description" content="Professional mobile-first PDF compression. Squeeze your files without losing quality.">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="icon" type="image/png" href="/icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>SqueezePDF</h1>
+            </div>
+        </header>
+
+        <main>
+            <section id="upload-section" class="card active">
+                <div class="upload-area" id="drop-zone">
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        </div>
+                        <h2>Upload PDF</h2>
+                        <p>Tap to select or drag & drop</p>
+                    </div>
+                    <input type="file" id="file-input" accept="application/pdf" hidden>
+                </div>
+            </section>
+
+            <section id="options-section" class="card">
+                <div class="file-info">
+                    <span id="file-name">document.pdf</span>
+                    <span id="file-size">2.4 MB</span>
+                </div>
+
+                <div class="compression-levels">
+                    <h3>Compression Level</h3>
+                    <div class="levels-grid">
+                        <label class="level-card">
+                            <input type="radio" name="compression" value="low" checked>
+                            <div class="level-content">
+                                <span class="level-title">Light</span>
+                                <span class="level-desc">High quality, subtle size reduction</span>
+                            </div>
+                        </label>
+                        <label class="level-card">
+                            <input type="radio" name="compression" value="medium">
+                            <div class="level-content">
+                                <span class="level-title">Standard</span>
+                                <span class="level-desc">Perfect balance of quality and size</span>
+                            </div>
+                        </label>
+                        <label class="level-card">
+                            <input type="radio" name="compression" value="high">
+                            <div class="level-content">
+                                <span class="level-title">Extreme</span>
+                                <span class="level-desc">Strips images. Fast & keeps layout.</span>
+                            </div>
+                        </label>
+                        <label class="level-card">
+                            <input type="radio" name="compression" value="ultimate">
+                            <div class="level-content">
+                                <span class="level-title">Ultimate</span>
+                                <span class="level-desc">New text-only PDF. Best for audio apps.</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <button id="compress-btn" class="btn primary">Compress Now</button>
+                <button id="reset-btn" class="btn secondary">Choose Another</button>
+            </section>
+
+            <section id="result-section" class="card">
+                <div class="success-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <h2>Squeezed!</h2>
+                <div class="result-stats">
+                    <div class="stat">
+                        <span class="label">Original</span>
+                        <span id="original-size-res" class="value">0 KB</span>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="stat">
+                        <span class="label">New Size</span>
+                        <span id="new-size-res" class="value">0 KB</span>
+                    </div>
+                </div>
+                <div class="savings-badge">Saved <span id="saving-percentage">0%</span></div>
+                
+                <button id="download-btn" class="btn primary">Download PDF</button>
+                <button id="again-btn" class="btn secondary">Compress More</button>
+            </section>
+        </main>
+
+        <div id="loader" class="loader-overlay">
+            <div class="loader-spinner"></div>
+            <p>Squeezing your PDF...</p>
+        </div>
+
+        <footer>
+            <p>Created by <a href="https://iamsaurabhsaini.com/" target="_blank" rel="noopener noreferrer">Saurabh Saini</a></p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
