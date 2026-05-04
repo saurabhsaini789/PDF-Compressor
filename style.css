@@ -1,12 +1,29 @@
 :root {
-  --primary: #3b82f6;
-  --primary-glow: rgba(59, 130, 246, 0.5);
-  --bg: #0f172a;
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --text: #f8fafc;
-  --text-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.1);
+  --primary: #ffcc66;
+  --primary-glow: rgba(255, 204, 102, 0.4);
+  --bg: #f7f3eb;
+  --card-bg: #ffffff;
+  --text: #0f1115;
+  --text-muted: #555555;
+  --border: rgba(15, 17, 21, 0.08);
   --success: #10b981;
+  --card-shadow: rgba(15, 17, 21, 0.1);
+  --overlay-bg: rgba(247, 243, 235, 0.9);
+  --sub-bg: rgba(15, 17, 21, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --card-bg: rgba(25, 27, 31, 0.8);
+    --text: #ffffff;
+    --text-muted: #f7f3eb;
+    --border: rgba(247, 243, 235, 0.08);
+    --primary-glow: rgba(255, 204, 102, 0.3);
+    --card-shadow: rgba(0, 0, 0, 0.4);
+    --overlay-bg: rgba(15, 17, 21, 0.95);
+    --sub-bg: rgba(255, 255, 255, 0.05);
+  }
 }
 
 * {
@@ -17,16 +34,22 @@
 }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--bg);
   background-image: 
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 0% 0%, rgba(255, 204, 102, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(15, 17, 21, 0.03) 0%, transparent 40%);
   color: var(--text);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.wf-loading body {
+  opacity: 0;
 }
 
 #app {
@@ -52,25 +75,28 @@ header {
 }
 
 .logo-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--primary);
-  border-radius: 12px;
-  box-shadow: 0 0 20px var(--primary-glow);
-  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.3s ease;
+  background-image: url('logo-light.png');
 }
 
-.logo-icon::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 4px;
-  background: white;
-  border-radius: 2px;
-  box-shadow: 0 8px 0 white, 0 -8px 0 white;
+@media (prefers-color-scheme: dark) {
+  .logo-icon {
+    background-image: url('logo-dark.png');
+  }
+}
+
+.dark .logo-icon {
+  background-image: url('logo-dark.png');
+}
+
+.light .logo-icon {
+  background-image: url('logo-light.png');
 }
 
 h1 {
@@ -95,7 +121,7 @@ main {
   flex-direction: column;
   gap: 24px;
   animation: slideUp 0.4s ease-out;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px var(--card-shadow);
 }
 
 .card.active {
@@ -139,7 +165,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--sub-bg);
   padding: 16px;
   border-radius: 12px;
   font-size: 0.9rem;
@@ -176,7 +202,7 @@ main {
 }
 
 .level-content {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--sub-bg);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 16px;
@@ -288,7 +314,7 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 23, 42, 0.9);
+  background: var(--overlay-bg);
   backdrop-filter: blur(8px);
   z-index: 100;
   display: none;

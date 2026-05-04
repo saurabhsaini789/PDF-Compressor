@@ -5,11 +5,11 @@
   "start_url": "/PDF-Compressor/",
   "scope": "/PDF-Compressor/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#ffcc66",
+  "theme_color": "#ffcc66",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "logo-dark.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

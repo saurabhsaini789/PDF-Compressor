@@ -6,12 +6,38 @@
     <title>SqueezePDF | Premium PDF Compressor</title>
     <meta name="description" content="Professional mobile-first PDF compression. Squeeze your files without losing quality.">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0f172a">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="icon" type="image/png" href="icon.png">
+    <meta name="theme-color" content="#f7f3eb" id="theme-meta">
+    <link rel="apple-touch-icon" href="logo-dark.png">
+    <link rel="icon" type="image/png" href="logo-light.png" id="favicon">
+    
+    <!-- Preconnect to Font Servers -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        (function() {
+            // 1. Theme Guard (Logo/Background)
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0f1115');
+            }
+
+            // 2. Font Visibility Guard
+            document.documentElement.classList.add('wf-loading');
+            document.fonts.ready.then(function() {
+                document.documentElement.classList.remove('wf-loading');
+                document.documentElement.classList.add('wf-active');
+            });
+            
+            // Fallback for font loading (3 seconds)
+            setTimeout(function() {
+                document.documentElement.classList.remove('wf-loading');
+            }, 3000);
+        })();
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=block" rel="stylesheet">
 </head>
 <body>
     <div id="app">

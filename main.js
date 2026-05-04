@@ -25,8 +25,33 @@ let compressedPdfBytes = null;
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
     initEventListeners();
+    initThemeManager();
     registerServiceWorker();
 });
+
+function initThemeManager() {
+    const themeMeta = document.getElementById('theme-meta');
+    const favicon = document.getElementById('favicon');
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    function updateTheme(e) {
+        const isDark = e.matches;
+        
+        // Toggle classes for the CSS-based logo switch
+        document.documentElement.classList.toggle('dark', isDark);
+        document.documentElement.classList.toggle('light', !isDark);
+        
+        // Update theme color and favicon
+        themeMeta.setAttribute('content', isDark ? '#0f1115' : '#f7f3eb');
+        if (favicon) {
+            favicon.href = isDark ? 'logo-dark.png' : 'logo-light.png';
+        }
+    }
+    
+    mediaQuery.addEventListener('change', updateTheme);
+    // Initial sync is already handled by index.html script, but we ensure consistency here
+    updateTheme(mediaQuery);
+}
 
 function initEventListeners() {
     // File Selection
